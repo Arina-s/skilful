@@ -10,5 +10,53 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+.allure
+version.properties
+out/
+.vscode
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+*.log
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Webapp ###
+/node_modules
+src/main/resources/static
+/babel_cache
+
+META-INF
+
+### Bdd Tests ###
+/screenshots
+
+### Sonar ###
+.sonar
+
+### KeyStore ###
+keystore.p12
+
+### MacOS ###
+.DS_Store
+
+### Jest coverage ###
+/coverage
