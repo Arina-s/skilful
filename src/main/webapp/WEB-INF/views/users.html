@@ -6,12 +6,32 @@
 </head>
 <h2>List of users</h2>
 <body>
-<tr th:each = "user : ${users}">
-    <td><span th:text = ${user.id}> Id</span></td>
-    <td><span th:text = ${user.name}> Name</span></td>
-    <td><span th:text = ${user.book}>Book name</span></td>
-    <br>
-</tr>
+<table border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Book name</th>
+        <th>Book author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text=${user.id}>ID</td>
+        <td th:text=${user.name}>Name</td>
+        <td th:text=${user.age}>Age</td>
+        <td th:text=${user.book.name}>Book name</td>
+        <td th:text=${user.book.author}>Book author</td>
+        <td>
+            <a th:href="@{'user/update/' + ${user.id}}">Update</a>
+            <a th:href="@{'user/delete/' + ${user.id}}">Delete</a>
+        </td>
+        <br>
+    </tr>
+    </tbody>
+</table>
 <p><a href="/users/create">Create user</a></p>
 </body>
 </html>

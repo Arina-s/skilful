@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update stormtrooper</title>
+</head>
+<body>
+<tr align="center">
+    <h2>Update user</h2>
+    <br>
+    <br>
+
+    <form action="#" th:action="@{/users/create}" th:object="${user}" method="post">
+        <table border="0", cellpadding="10">
+            <tr>
+                <td>ID</td>
+                <td>
+                    <input type="text" th:field="*{id}" readonly="readonly">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" th:field="*{name}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Book name</td>
+                <td>
+                    <input type="text" th:field="*{book.name}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Book author</td>
+                <td>
+                    <input type="text" th:field="*{book.author}">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+            </tr>
+        </table>
+    </form>
+</tr>
+</body>
+</html>
