@@ -22,11 +22,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getNewUser() {
-        return userDao.getNewUser();
-    }
-
-    @Override
     public void deleteById(int id) {
         userDao.getAllUsers().removeIf(user -> user.getId() == id);
     }
@@ -34,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         checkValidUserName(user);
-        userDao.getAllUsers().add(user);
+        userDao.save(user);
     }
 
     private void checkValidUserName(User user) {

@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping("/users/create")
     public String getCreateUserForm(Model model) {
-        model.addAttribute("user", userService.getNewUser());
+        model.addAttribute("user", new User());
         return "createUserForm";
     }
 
