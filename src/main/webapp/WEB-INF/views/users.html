@@ -6,7 +6,43 @@
 </head>
 <h2>List of users</h2>
 <body>
-<table border="1" cellpadding="10">
+<style>
+	table.tableStyle {
+	    text-decoration: none;
+	    border-collapse:collapse;
+	    width:80%;
+	    text-align:center;
+	}
+	table.tableStyle th {
+	    font-weight:normal;
+	    font-size: 20px;
+	    color:#f2faff;
+	    background-color:#2b4e80;
+	    }
+	table.tableStyle td {
+	    font-size:16px;
+	    color:#000000;
+	    padding: 8px;
+	    vertical-align: middle;
+	    border: 1px solid #9fb5c4;
+	}
+	table.tableStyle th {
+	    white-space:pre-wrap;
+	    padding: 15px 10px;
+	    line-height:15px;
+	    vertical-align: middle;
+	    border: 1px solid #9fb5c4;
+	}
+	table.tableStyle tr:hover {
+	    background-color:#dcedfa
+	}
+	table.tableStyle tr:hover td {
+	    color:#000000;
+	    cursor:default;
+	}
+
+</style>
+<table class="tableStyle">
     <thead>
     <tr>
         <th>ID</th>
@@ -28,7 +64,6 @@
             <a th:href="@{'user/update/' + ${user.id}}">Update</a>
             <a th:href="@{'user/delete/' + ${user.id}}">Delete</a>
         </td>
-        <br>
     </tr>
     </tbody>
 </table>
