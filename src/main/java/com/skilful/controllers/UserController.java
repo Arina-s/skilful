@@ -45,9 +45,18 @@ public class UserController {
 
     @GetMapping("user/update/{id}")
     public String update(@PathVariable("id") int id, Model model) {
-        User userUpdate = userService.updateById(id);
+        User userUpdate = userService.getUserById(id);
         model.addAttribute("user", userUpdate);
         return "updateUser";
+    }
+
+    @PostMapping("/user/update")
+    public String updateUser(User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "updateUser";
+        }
+        userService.updateUser(user);
+        return "redirect:/users";
     }
 
 }

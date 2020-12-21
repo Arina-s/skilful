@@ -70,4 +70,46 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public void delete(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM users WHERE id = ?"
+            );
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update(User user) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+              "UPDATE users SET name = ?, age = ? WHERE id = ?",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            statement.setString(1, user.getName());
+            statement.setInt(2, user.getAge());
+            statement.setInt(3, user.getId());
+            int changedRows = statement.executeUpdate();
+            if (changedRows > 0) {
+                try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                    if (resultSet.next()) {
+                        int id = resultSet.getInt(1);
+                        PreparedStatement statementBook =
+                                connection.prepareStatement("UPDATE books SET book_name = ?, book_author = ? WHERE user_id = ?");
+                        statementBook.setString(1, user.getBook().getName());
+                        statementBook.setString(2, user.getBook().getAuthor());
+                        statementBook.setInt(3, id);
+                        statementBook.executeUpdate();
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

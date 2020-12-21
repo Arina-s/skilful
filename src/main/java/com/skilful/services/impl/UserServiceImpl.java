@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(int id) {
-        userDao.getAllUsers().removeIf(user -> user.getId() == id);
+        userDao.delete(id);
     }
 
     @Override
@@ -45,13 +45,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateById(int id) {
-        User userUpdate = userDao.getAllUsers().stream()
-                .filter(user -> user.getId() == id)
+    public User getUserById(int id) {
+        User user = userDao.getAllUsers().stream()
+                .filter(u -> u.getId() == id)
                 .findFirst()
                 .orElse(null);
-        userDao.getAllUsers().remove(userUpdate);
-        return userUpdate;
+        return user;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        userDao.update(user);
     }
 
 }

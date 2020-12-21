@@ -12,6 +12,7 @@ public interface UserService {
 
     void save(User user);
 
-    User updateById(int id);
+    User getUserById(int id);
 
+    void updateUser(User user);
 }
