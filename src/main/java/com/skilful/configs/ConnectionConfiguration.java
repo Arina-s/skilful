@@ -20,9 +20,9 @@ public class ConnectionConfiguration {
         }
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/skilful",
+                    "jdbc:postgresql://localhost:5433/skilful",
                     "postgres",
-                    "postgres"
+                    "123"
             );
         } catch (SQLException e) {
             e.printStackTrace();

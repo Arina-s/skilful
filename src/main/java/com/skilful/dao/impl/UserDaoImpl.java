@@ -12,8 +12,8 @@ import java.util.*;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    private static final String GET_ALL_USERS = "SELECT users.id, users.name, users.age, book_name, book_author FROM users \n" +
-            "LEFT JOIN books ON users.id = books.user_id";
+    private static final String GET_ALL_USERS = "SELECT users.user_id, user_name, user_age, book_name, book_author FROM users \n" +
+            "LEFT JOIN books ON users.user_id = books.user_id";
 
     @Autowired
     private Connection connection;
@@ -26,9 +26,9 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setName(resultSet.getString("name"));
-                user.setAge(resultSet.getInt("age"));
+                user.setId(resultSet.getInt("user_id"));
+                user.setName(resultSet.getString("user_name"));
+                user.setAge(resultSet.getInt("user_age"));
                 Book book = new Book();
                 book.setName(resultSet.getString("book_name"));
                 book.setAuthor(resultSet.getString("book_author"));
@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
     public void save(User user) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO users (name, age) VALUES (?, ?)",
+                    "INSERT INTO users (user_name, user_age) VALUES (?, ?)",
                     Statement.RETURN_GENERATED_KEYS
             );
             statement.setString(1, user.getName());
@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
     public void delete(int id) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    "DELETE FROM users WHERE id = ?"
+                    "DELETE FROM users WHERE user_id = ?"
             );
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDao {
     public void update(User user) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-              "UPDATE users SET name = ?, age = ? WHERE id = ?",
+              "UPDATE users SET user_name = ?, user_age = ? WHERE user_id = ?",
                     Statement.RETURN_GENERATED_KEYS
             );
             statement.setString(1, user.getName());
